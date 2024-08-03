@@ -32,9 +32,9 @@ export default function TodoList() {
     <ul>
       {todos.map((todo) => (
         <li key={todo.id}>
-          <h2>{todo.title}</h2>
-          <p>{todo.description}</p>
-          <p>{todo.completed ? "Completed" : "Not Completed"}</p>
+          <h2>タイトル： {todo.title}</h2>
+          <p>内容: {todo.description}</p>
+          <p>完了フラグ: {todo.completed ? "Completed" : "Not Completed"}</p>
         </li>
       ))}
     </ul>
