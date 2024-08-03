@@ -1,12 +1,9 @@
-// components/TodoForm.js
+"use client";
+
 import { useState } from "react";
 import axios from "axios";
 
-interface TodoFormProps {
-  fetchTodos: () => void;
-}
-
-const TodoForm: React.FC<TodoFormProps> = ({ fetchTodos }) => {
+export default function TodoForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -14,8 +11,9 @@ const TodoForm: React.FC<TodoFormProps> = ({ fetchTodos }) => {
     e.preventDefault();
     axios
       .post("http://localhost:8000/api/todos/", { title, description })
-      .then((response) => {
-        fetchTodos();
+      .then(() => {
+        // ここでTodoListコンポーネントを再レンダリングする方法を考える必要があります
+        // 例えば、グローバルな状態管理やコンテキストを使用する
         setTitle("");
         setDescription("");
       })
@@ -41,6 +39,4 @@ const TodoForm: React.FC<TodoFormProps> = ({ fetchTodos }) => {
       <button type="submit">Add Todo</button>
     </form>
   );
-};
-
-export default TodoForm;
+}
