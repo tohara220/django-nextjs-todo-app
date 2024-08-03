@@ -23,6 +23,16 @@ export default function TodoList() {
         console.error("There was an error fetching the todos!", error);
       });
   };
+  const deleteTodo = (id: number) => {
+    axios
+      .delete(`http://localhost:8000/api/todos/${id}`)
+      .then(() => {
+        setTodos(todos.filter((todo) => todo.id !== id));
+      })
+      .catch((error) => {
+        console.error("There was an error deleting the todo!", error);
+      });
+  };
 
   useEffect(() => {
     fetchTodos();
@@ -35,6 +45,7 @@ export default function TodoList() {
           <h2>タイトル： {todo.title}</h2>
           <p>内容: {todo.description}</p>
           <p>完了フラグ: {todo.completed ? "Completed" : "Not Completed"}</p>
+          <button onClick={() => deleteTodo(todo.id)}>削除</button>
         </li>
       ))}
     </ul>
